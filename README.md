@@ -81,7 +81,7 @@ Dataset ini berisi rating yang diberikan oleh pengguna terhadap film yang telah 
       - lebih dari 12,5% film mendapatkan rating 5    
       - lebih dari 8% film mendapatkan rating 4.5     
       - lebih dari 25% film mendapatkan rating 4      
-   ![distribusi_rating](images/distribusi_rating.PNG)     
+   ![distribusi_rating](images/distribusi_rating.png)     
 
 **movies_df** dan **ratings_df** akan digabung di bagian data preparation dan data gabungan ini akan digunakan dalam proses modeling.       
 
@@ -177,7 +177,7 @@ history = model.fit(
 ```      
 Setelah pelatihan selesai, sistem digunakan untuk memberikan rekomendasi kepada pengguna tertentu dengan langkah-langkah seperti di bawah ini:    
 Pertama, dipilih satu sample user secara acak dari data interaksi `collab_based_df`. Lalu diambil daftar film yang pernah ditonton dan diberi rating tinggi oleh pengguna tersebut, seperti di bawah ini:       
-![top_movies_user](images/top_movies_user.JPEG)
+![top_movies_user](images/top_movies_user.JPG)
 
 Selanjutnya, sistem mengidentifikasi film yang belum ditonton oleh pengguna dengan mengeliminasi film yang ada dalam histori rating-nya. Daftar film yang belum ditonton ini kemudian dikonversi ke dalam bentuk encoding numerik yang sesuai, dan dipasangkan dengan ID pengguna (yang juga telah di-encode) untuk membentuk input array user_movie_array. Model kemudian digunakan untuk memprediksi kemungkinan rating terhadap seluruh film yang belum ditonton. Hasil prediksi tersebut diurutkan untuk mendapatkan skor tertinggi, dan 10 film dengan skor prediksi tertinggi dikembalikan sebagai Top-10 Movie Recommendation.     
 Hasilnya seperti di bawah ini:    
@@ -215,7 +215,7 @@ Hasilnya seperti di bawah ini:
 
 
 - Model collaborative filtering mencapai score RMSE yang baik `rmse < 0,20`.      
-   ![rmse_plot](images/rmse_plot.PNG)   
+   ![rmse_plot](images/rmse_plot.png)   
    - Score akhir pada epoch ke 40: `rmse_training: 0.16,  rmse_validation: 0.19`. Ini menunjukkan bahwa model mampu memberikan rekomendasi film berdasarkan prediksi rating yang akurat (selisih rmse training dan validation kecil hanya sekitar 0,025).   
 
 **Kesimpulan**    
