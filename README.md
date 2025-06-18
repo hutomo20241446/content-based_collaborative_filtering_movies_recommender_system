@@ -140,7 +140,6 @@ Fungsi movie_recommendations akan menghasilkan rekomendasi top-N (default=5) fil
 `movie_recommendations(judul_film, similarity_data=cosine_sim_df, items=content_based_df[['title', 'genres']], k=5)`    
 Ketika pengguna memilih film "Toy Story (1995)" dengan k=10, sistem akan menampilkan sepuluh film lain dengan genre yang paling mirip berdasarkan perhitungan kemiripan tersebut.      
 Hasilnya seperti di bawah ini:   
-<!-- <img src="images/recommend_content_based.JPG" alt="recommend_content_based" width="500"/>     -->
 ![recommend_content_based](images/recommend_content_based.JPG)
 **Kelebihan**:
 - Tidak memerlukan data historis user
@@ -178,12 +177,10 @@ history = model.fit(
 ```      
 Setelah pelatihan selesai, sistem digunakan untuk memberikan rekomendasi kepada pengguna tertentu dengan langkah-langkah seperti di bawah ini:    
 Pertama, dipilih satu sample user secara acak dari data interaksi `collab_based_df`. Lalu diambil daftar film yang pernah ditonton dan diberi rating tinggi oleh pengguna tersebut, seperti di bawah ini:       
-<!-- <img src="images/top_movies_user.JPG" alt="top_movies_user" width="500"/> -->
-![top_movies_user](images/top_movies_user.jpg)
+![top_movies_user](images/top_movies_user.JPEG)
 
 Selanjutnya, sistem mengidentifikasi film yang belum ditonton oleh pengguna dengan mengeliminasi film yang ada dalam histori rating-nya. Daftar film yang belum ditonton ini kemudian dikonversi ke dalam bentuk encoding numerik yang sesuai, dan dipasangkan dengan ID pengguna (yang juga telah di-encode) untuk membentuk input array user_movie_array. Model kemudian digunakan untuk memprediksi kemungkinan rating terhadap seluruh film yang belum ditonton. Hasil prediksi tersebut diurutkan untuk mendapatkan skor tertinggi, dan 10 film dengan skor prediksi tertinggi dikembalikan sebagai Top-10 Movie Recommendation.     
 Hasilnya seperti di bawah ini:    
-<!-- <img src="images/recommended_movies.JPG" alt="recommended_movies" width="500"/> -->
 ![recommended_movies](images/recommended_movies.JPG)
 
 **Kelebihan**:
@@ -199,7 +196,6 @@ Hasilnya seperti di bawah ini:
 ### Metrik Evaluasi
 1. **Content-Based**:
    - Mean Average Precision (MAP): Rata-rata dari Average Precision (AP) untuk semua item yang direkomendasikan, mengukur presisi rekomendasi dengan mempertimbangkan peringkat relevansi.      
-   <!-- <img src="images/map_formula.JPG" alt="map_formula" width="500"/>    -->
    ![map_formula](images/map_formula.JPG)    
    - MAP bekerja dengan menghitung presisi pada setiap posisi rekomendasi untuk setiap pengguna, kemudian mengambil rata-rata presisi tersebut untuk semua item relevan. Nilai MAP menunjukkan seberapa baik model menempatkan item relevan di peringkat atas; semakin tinggi nilainya, semakin akurat rekomendasi.
 
@@ -213,14 +209,12 @@ Hasilnya seperti di bawah ini:
 
 **Hasil Evaluasi**:
 - Model content-based filtering mencapai score MAP  yang memuaskan `map > 0,85`.     
-   <!-- <img src="images/map_score.JPG" alt="map_score" width="300"/>   -->
    ![map_score](images/map_score.JPG)   
    
    - score MAP untuk 10 rekomendasi teratas yang diberikan mencapai `1.0`. Ini berarti bahwa rekomendasi yang diberikan menunjukkan relevansi genre yang tinggi terhadap film acuan.      
 
 
 - Model collaborative filtering mencapai score RMSE yang baik `rmse < 0,20`.      
-   <!-- <img src="images/rmse_plot.PNG" alt="rmse_plot" width="300"/>    -->
    ![rmse_plot](images/rmse_plot.PNG)   
    - Score akhir pada epoch ke 40: `rmse_training: 0.16,  rmse_validation: 0.19`. Ini menunjukkan bahwa model mampu memberikan rekomendasi film berdasarkan prediksi rating yang akurat (selisih rmse training dan validation kecil hanya sekitar 0,025).   
 
